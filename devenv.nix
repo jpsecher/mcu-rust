@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  languages.rust.enable = true;
+  languages.rust = {
+    enable = true;
+    # components = ["elf2uf2-rs"];
+  };
 
   env.GREET = "devenv";
 
