@@ -11,3 +11,5 @@ hello:
 blinky:
   cd blinky; cargo run
 
+spi:
+  cd spi; cargo run
