@@ -2,8 +2,8 @@
 
 ## Plan
 
-- [ ] Set up a Rust environment for embedded development.
-- [ ] Run Blinky on RaspberryPi Pico.
+- [x] Set up a Rust environment for embedded development.
+- [x] Run Blinky on RaspberryPi Pico.
 - [ ] Control a SPI device from the Pico.
 
 ## Goals
@@ -15,15 +15,15 @@
 ## One-time setup
 
 1. Make sure that you have `libudev-dev`, eg. `sudo apt install libudev-dev`.
-1. Install [DevEnv](https://devenv.sh/getting-started/) so that you have a Nix package management infrastructure.
+1. ~~Install [DevEnv](https://devenv.sh/getting-started/) so that you have a Nix package management infrastructure.~~  See notes.
 
 ## Daily use
 
-Run `devenv shell` to switch into the development environment where all the needed tools and dependencies are installed, sort of like with Python virtual environments.  
+~~Run `devenv shell` to switch into the development environment where all the needed tools and dependencies are installed, sort of like with Python virtual environments.~~
 
 Run `just` to see the available project-specific commands.
 
-Run `exit` to exit the development environment.
+~~Run `exit` to exit the development environment.~~
 
 ## Notes
 
