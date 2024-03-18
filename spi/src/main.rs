@@ -59,8 +59,9 @@ fn main() -> ! {
     let mut led_pin = pins.led.into_push_pull_output();
     let mut spi_cs = pins.gpio5.into_push_pull_output();
     let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
+    let mut dac_high_bits = 0;
     loop {
-        let mut buffer = [0b0001_0111, 0b11111111];
+        let mut buffer = [0b0011_0000 + dac_high_bits, 0b11111111];
         spi_cs.set_low().unwrap();
         if myspi.write(&mut buffer).is_ok() {
             led_pin.set_high().unwrap();
@@ -69,5 +70,9 @@ fn main() -> ! {
         delay.delay_ms(50);
         led_pin.set_low().unwrap();
         delay.delay_ms(50);
+        dac_high_bits += 1;
+        if dac_high_bits > 0b1111 {
+            dac_high_bits = 0;
+        }
     }
 }
