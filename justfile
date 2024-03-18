@@ -13,3 +13,6 @@ blinky:
 
 spi:
   cd spi; cargo run
+
+dac:
+  cd dac; cargo test
