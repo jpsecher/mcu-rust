@@ -58,6 +58,7 @@ fn main() -> ! {
     // Keep sending commands to the DAC, blink if ok
     let mut led_pin = pins.led.into_push_pull_output();
     let mut spi_cs = pins.gpio5.into_push_pull_output();
+    // let mut n_ldac = pins.gpio9.into_push_pull_output();
     let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
     let mut dac_high_bits = 0;
     loop {
@@ -67,8 +68,10 @@ fn main() -> ! {
             led_pin.set_high().unwrap();
         }
         spi_cs.set_high().unwrap();
+        // n_ldac.set_low().unwrap();
         delay.delay_ms(50);
         led_pin.set_low().unwrap();
+        // n_ldac.set_high().unwrap();
         delay.delay_ms(50);
         dac_high_bits += 1;
         if dac_high_bits > 0b1111 {
