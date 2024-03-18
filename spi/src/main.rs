@@ -45,25 +45,29 @@ fn main() -> ! {
         &mut pac.RESETS,
     );
     let spi_mosi = pins.gpio7.into_function::<FunctionSpi>();
+    // let spi_miso = pins.gpio8.into_function::<FunctionSpi>();
     let spi_sclk = pins.gpio6.into_function::<FunctionSpi>();
     let spi_device = pac.SPI0;
     let spi_pin_layout = (spi_mosi, spi_sclk);
     let mut myspi = Spi::<_, _, _, 8>::new(spi_device, spi_pin_layout).init(
         &mut pac.RESETS,
         clocks.peripheral_clock.freq(),
-        16_000_000u32.Hz(),
+        12_000_000u32.Hz(),
         embedded_hal::spi::MODE_0,
     );
     // Keep sending commands to the DAC, blink if ok
     let mut led_pin = pins.led.into_push_pull_output();
+    let mut spi_cs = pins.gpio5.into_push_pull_output();
     let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
     loop {
         let mut buffer = [0b0001_0111, 0b11111111];
+        spi_cs.set_low().unwrap();
         if myspi.write(&mut buffer).is_ok() {
             led_pin.set_high().unwrap();
         }
-        delay.delay_ms(500);
+        spi_cs.set_high().unwrap();
+        delay.delay_ms(50);
         led_pin.set_low().unwrap();
-        delay.delay_ms(500);
+        delay.delay_ms(50);
     }
 }
