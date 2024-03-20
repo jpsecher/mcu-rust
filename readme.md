@@ -36,6 +36,9 @@ cargo install elf2uf2-rs --locked
 rustup target add thumbv6m-none-eabi
 ```
 
+On NixOS, do `nix-shell -p pkg-config udev` instead of installing libudev, and then run cargo install flip-link & elf2uf2-rs.
+
+
 For Just:
 
 ```

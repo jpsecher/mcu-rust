@@ -2,6 +2,7 @@
 {
   languages.rust = {
     enable = true;
+    components = [ "rustc" "cargo" "clippy" "rustfmt" "rust-analyzer" ];
     # components = ["elf2uf2-rs"];
   };
 
