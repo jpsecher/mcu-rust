@@ -5,14 +5,17 @@ default:
 system-info:
   @echo "{{os_family()}} ({{os()}} on {{arch()}} with {{num_cpus()}} cores)"
 
-hello:
-  cd hello-world; cargo run
-
 blinky:
   cd blinky; cargo run
 
 spi:
   cd spi; cargo run
 
-dac:
-  cd dac; cargo test
+build:
+  cd dac; cargo build
+
+test:
+  cd mcu-lib; cargo test --all-targets
+
+run:
+  cd dac; cargo run
