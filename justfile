@@ -12,10 +12,10 @@ spi:
   cd spi; cargo run
 
 build:
-  cd dac; cargo build
+  cd minigrep; cargo build
 
 test:
-  cd mcu-lib; cargo test --all-targets
+  cd minigrep; cargo test --all-targets
 
-run:
-  cd dac; cargo run
+run needle haystack:
+  cd minigrep; cargo run {{needle}} {{haystack}}

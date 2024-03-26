@@ -1,0 +1,10 @@
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+"<" = ">"
+
+[keys.normal.space.t]
+t = ":sh just test"
+b = ":sh just build 2>&1"

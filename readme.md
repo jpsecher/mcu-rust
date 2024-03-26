@@ -4,7 +4,7 @@
 
 - [x] Set up a Rust environment for embedded development.
 - [x] Run Blinky on RaspberryPi Pico.
-- [ ] Control a SPI device from the Pico.
+- [x] Control a SPI device from the Pico.
 
 ## Goals
 
@@ -27,16 +27,21 @@ Run `just` to see the available project-specific commands.
 
 ## Notes
 
-Have not found out how to actually make devenv control to the rust eco system, so not using the devenv setup for rust.  Had to do this instead:
+Have not found out how to actually make [devenv control to the rust eco system](https://github.com/cachix/devenv/pull/900), so not using the devenv setup for rust.  Had to do this instead:
 
 ```
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 sudo apt install libudev-dev
 cargo install elf2uf2-rs --locked
-rustup target add thumbv6m-none-eabi
 ```
 
-On NixOS, do `nix-shell -p pkg-config udev` instead of installing libudev, and then run cargo install flip-link & elf2uf2-rs.
+On NixOS, do `nix-shell -p pkg-config udev` instead of installing libudev, and then run cargo install flip-link & elf2uf2-rs --locked.
+
+Finally do
+
+```
+rustup target add thumbv6m-none-eabi
+```
 
 
 For Just:
