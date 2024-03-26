@@ -15,7 +15,7 @@ build:
   cd minigrep; cargo build
 
 test:
-  cd minigrep; cargo test --all-targets
+  @cd minigrep; cargo test --all-targets | grep -Ev '^(running [0-9]+ tests?$|test result: ok\.|\s+Running (unittests|tests/)|$)'
 
 run needle haystack:
   cd minigrep; cargo run {{needle}} {{haystack}}
