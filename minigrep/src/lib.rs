@@ -22,6 +22,10 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    vec![]
+}
+
 pub fn add(left: u8, right: u8) -> u8 {
     left + right
 }
@@ -34,5 +38,15 @@ mod tests {
     fn it_works_out() {
         let result = add(2, 2);
         assert_eq!(result, 4);
+    }
+
+    #[test]
+    fn can_find_one_result() {
+        let query = "duct";
+        let contents = "\
+Rust:
+safe, fast, productive.
+Pick any three.";
+        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
     }
 }
