@@ -9,7 +9,7 @@ use rp_pico as bsp;
 
 use bsp::hal::{clocks::init_clocks_and_plls, pac, usb::UsbBus, watchdog::Watchdog};
 use usb_device::class_prelude::UsbBusAllocator;
-use usb_device::device::{UsbDeviceBuilder, UsbVidPid};
+use usb_device::device::{StringDescriptors, UsbDeviceBuilder, UsbVidPid};
 use usbd_serial::{SerialPort, UsbError, USB_CLASS_CDC};
 
 #[entry]
@@ -36,27 +36,36 @@ fn main() -> ! {
     ));
     let mut serial = SerialPort::new(&usb_bus);
     let mut usb_dev = UsbDeviceBuilder::new(&usb_bus, UsbVidPid(0x16c0, 0x27dd))
-        // .product("Serial port")
+        .strings(&[StringDescriptors::default()
+            .manufacturer("Kaleidoscope")
+            .product("DAC")
+            .serial_number("123")])
+        .unwrap()
         .device_class(USB_CLASS_CDC)
         .build();
+    // Echo back every character, but uppercased...
     loop {
         if !usb_dev.poll(&mut [&mut serial]) {
             continue;
         }
         let mut buf = [0u8; 64];
         match serial.read(&mut buf[..]) {
+            Ok(0) => {}
             Ok(count) => {
-                // count bytes were read to &buf[..count]
+                buf.iter_mut().take(count).for_each(|b| {
+                    b.make_ascii_uppercase();
+                });
+                let mut pointer = &buf[..count];
+                while !pointer.is_empty() {
+                    match serial.write(pointer) {
+                        Ok(count) => pointer = &pointer[count..],
+                        Err(UsbError::WouldBlock) => {}
+                        Err(_err) => break,
+                    };
+                }
             }
             Err(UsbError::WouldBlock) => {}
-            Err(err) => {}
-        };
-        match serial.write(&[0x3a, 0x29]) {
-            Ok(count) => {
-                // count bytes were written
-            }
-            Err(UsbError::WouldBlock) => {}
-            Err(err) => {}
+            Err(_err) => {}
         };
     }
 }
