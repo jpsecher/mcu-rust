@@ -52,5 +52,6 @@ Packages
 
 ## Reading list
 
+- https://github.com/rust-embedded/awesome-embedded-rust
 - https://docs.rs/crate/cortex-m-quickstart/latest
 - https://github.com/knurling-rs
