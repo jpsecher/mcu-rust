@@ -29,28 +29,28 @@ Run `just` to see the available project-specific commands.
 
 Have not found out how to actually make [devenv control to the rust eco system](https://github.com/cachix/devenv/pull/900), so not using the devenv setup for rust.  Had to do this instead:
 
-```
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-sudo apt install libudev-dev
-cargo install elf2uf2-rs --locked
-```
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    sudo apt install libudev-dev
+    cargo install elf2uf2-rs --locked
 
 On NixOS, do `nix-shell -p pkg-config udev` instead of installing libudev, and then run cargo install flip-link & elf2uf2-rs --locked.
 
 Finally do
 
-```
-rustup target add thumbv6m-none-eabi
-```
-
+    rustup target add thumbv6m-none-eabi
 
 For Just:
 
-```
-wget -qO - 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
-echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
-sudo apt update
-sudo apt install just
-```
+    wget -qO - 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
+    echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
+    sudo apt update
+    sudo apt install just
 
+Packages
 
+    sudo apt install gdb-arm-none-eabi openocd
+
+## Reading list
+
+- https://docs.rs/crate/cortex-m-quickstart/latest
+- https://github.com/knurling-rs
