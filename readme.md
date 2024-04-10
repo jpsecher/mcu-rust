@@ -48,7 +48,42 @@ For Just:
 
 Packages
 
-    sudo apt install gdb-arm-none-eabi openocd
+    $ rustup show
+    Default host: x86_64-unknown-linux-gnu
+    rustup home:  /home/jps/.rustup
+
+    installed toolchains
+    --------------------
+
+    stable-x86_64-unknown-linux-gnu (default)
+    1.61.0-x86_64-unknown-linux-gnu
+    1.65.0-x86_64-unknown-linux-gnu
+    1.73.0-x86_64-unknown-linux-gnu
+
+    installed targets for active toolchain
+    --------------------------------------
+
+    thumbv6m-none-eabi
+    x86_64-unknown-linux-gnu
+
+    active toolchain
+    ----------------
+
+    stable-x86_64-unknown-linux-gnu (default)
+    rustc 1.76.0 (07dca489a 2024-02-04)
+
+    $ sudo apt install gdb-arm-none-eabi openocd
+
+    $ rustup component list | grep installed
+    cargo-x86_64-unknown-linux-gnu (installed)
+    clippy-x86_64-unknown-linux-gnu (installed)
+    rust-analyzer-x86_64-unknown-linux-gnu (installed)
+    rust-docs-x86_64-unknown-linux-gnu (installed)
+    rust-src (installed)
+    rust-std-thumbv6m-none-eabi (installed)
+    rust-std-x86_64-unknown-linux-gnu (installed)
+    rustc-x86_64-unknown-linux-gnu (installed)
+    rustfmt-x86_64-unknown-linux-gnu (installed)
 
 ## Reading list
 
