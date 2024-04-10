@@ -31,7 +31,7 @@ Have not found out how to actually make [devenv control to the rust eco system](
 
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     sudo apt install libudev-dev
-    cargo install elf2uf2-rs --locked
+    cargo install elf2uf2-rs flip-link --locked
 
 On NixOS, do `nix-shell -p pkg-config udev` instead of installing libudev, and then run cargo install flip-link & elf2uf2-rs --locked.
 
@@ -45,45 +45,6 @@ For Just:
     echo "deb [arch=all,$(dpkg --print-architecture) signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
     sudo apt update
     sudo apt install just
-
-Packages
-
-    $ rustup show
-    Default host: x86_64-unknown-linux-gnu
-    rustup home:  /home/jps/.rustup
-
-    installed toolchains
-    --------------------
-
-    stable-x86_64-unknown-linux-gnu (default)
-    1.61.0-x86_64-unknown-linux-gnu
-    1.65.0-x86_64-unknown-linux-gnu
-    1.73.0-x86_64-unknown-linux-gnu
-
-    installed targets for active toolchain
-    --------------------------------------
-
-    thumbv6m-none-eabi
-    x86_64-unknown-linux-gnu
-
-    active toolchain
-    ----------------
-
-    stable-x86_64-unknown-linux-gnu (default)
-    rustc 1.76.0 (07dca489a 2024-02-04)
-
-    $ sudo apt install gdb-arm-none-eabi openocd
-
-    $ rustup component list | grep installed
-    cargo-x86_64-unknown-linux-gnu (installed)
-    clippy-x86_64-unknown-linux-gnu (installed)
-    rust-analyzer-x86_64-unknown-linux-gnu (installed)
-    rust-docs-x86_64-unknown-linux-gnu (installed)
-    rust-src (installed)
-    rust-std-thumbv6m-none-eabi (installed)
-    rust-std-x86_64-unknown-linux-gnu (installed)
-    rustc-x86_64-unknown-linux-gnu (installed)
-    rustfmt-x86_64-unknown-linux-gnu (installed)
 
 ## Reading list
 

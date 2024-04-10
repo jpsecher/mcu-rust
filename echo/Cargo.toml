@@ -17,6 +17,7 @@ rp-pico = "0.9.0"
 fugit = "0.3.7"
 usbd-serial = "0.2.1"
 usb-device = "0.3.2"
+flip-link = "0.1.8"
 
 # cargo build/run
 [profile.dev]
